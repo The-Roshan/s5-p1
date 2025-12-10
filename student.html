@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard - Attendance System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Enhanced Dashboard Styling */
+    .dashboard-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+    }
+
+    .dashboard-header h2 {
+      margin: 0 0 10px 0;
+      font-weight: 700;
+      font-size: 28px;
+    }
+
+    .dashboard-header p {
+      margin: 0;
+      opacity: 0.95;
+      font-size: 15px;
+    }
+
+    .stat-card {
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .stat-card .card-body {
+      padding: 25px;
+    }
+
+    .stat-card .card-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .stat-card h3 {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .stat-card.primary h3 { color: #667eea; }
+    .stat-card.success h3 { color: #28a745; }
+    .stat-card.danger h3 { color: #dc3545; }
+    .stat-card.info h3 { color: #17a2b8; }
+
+    .stat-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    .stat-value {
+      font-size: 32px !important;
+      font-weight: 700 !important;
+      margin-top: 10px;
+    }
+
+    .card-header.bg-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-weight: 600;
+    }
+
+    .profile-info p {
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
+
+    .profile-info p strong {
+      display: inline-block;
+      min-width: 180px;
+      color: #333;
+    }
+
+    .progress-section {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .progress-section h5 {
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .progress {
+      height: 35px;
+      background: #f0f0f0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: width 0.4s ease;
+    }
+
+    .attendance-status {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .status-item {
+      flex: 1;
+      min-width: 150px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      text-align: center;
+      border-left: 4px solid #667eea;
+    }
+
+    .status-item.success { border-left-color: #28a745; }
+    .status-item.warning { border-left-color: #ffc107; }
+    .status-item.danger { border-left-color: #dc3545; }
+
+    .status-item .value {
+      font-size: 24px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .status-item .label {
+      font-size: 13px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 5px;
+    }
+
+    .alert-custom {
+      border: none;
+      border-radius: 10px;
+      padding: 15px 20px;
+    }
+
+    .alert-custom.warning {
+      background: #fff3cd;
+      color: #856404;
+      border-left: 4px solid #ffc107;
+    }
+
+    .alert-custom.success {
+      background: #d4edda;
+      color: #155724;
+      border-left: 4px solid #28a745;
+    }
+
+    /* Section transition */
+    .section {
+      animation: fadeIn 0.45s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="headerNav" style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+    <div class="container-fluid">
+      <button class="btn btn-sm btn-outline-light d-md-none me-2" onclick="document.getElementById('sidebar').classList.toggle('show')">☰</button>
+      <a class="navbar-brand fw-bold" href="#">📊 Attendance System</a>
+      <div class="ms-auto d-flex align-items-center gap-2">
+        <select class="form-select form-select-sm" id="studentSelector" style="width: 200px; display: none;" onchange="switchStudent(this.value)">
+          <option value="">Select Student (Demo)</option>
+        </select>
+        <button class="btn btn-outline-light btn-sm" onclick="toggleTheme()" title="Toggle Theme">🌓</button>
+        <div class="navbar-nav" id="userInfo"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="d-flex">
+    <div class="sidebar bg-light p-3 vh-100" id="sidebar" style="width: 250px; position: fixed; overflow-y: auto; box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);"></div>
+    <main class="flex-grow-1 p-4" style="margin-left: 250px; background: #f8f9fa; min-height: 100vh;">
+
+      <!-- Dashboard Section -->
+      <div id="studentDash" class="section">
+        <div class="dashboard-header">
+          <h2>📚 Welcome back, <span id="stuName">Student</span>!</h2>
+          <p>Roll No: <span id="stuRoll">-</span> | <span id="stuEmail">-</span></p>
+        </div>
+
+        <!-- Attendance Status Overview -->
+        <div class="progress-section">
+          <h5>📈 Overall Attendance Status</h5>
+          <div class="progress">
+            <div class="progress-bar bg-success" id="overallPerc" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              <span id="percText">0%</span>
+            </div>
+          </div>
+
+          <div class="attendance-status">
+            <div class="status-item success">
+              <div class="value" id="totalClasses">0</div>
+              <div class="label">Total Classes</div>
+            </div>
+            <div class="status-item success">
+              <div class="value" id="attendedClasses">0</div>
+              <div class="label">Present</div>
+            </div>
+            <div class="status-item danger">
+              <div class="value" id="absentCount">0</div>
+              <div class="label">Absent</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alert Section -->
+        <div id="alertSection"></div>
+
+        <!-- Quick Actions -->
+        <div class="row mt-4">
+          <div class="col-md-12">
+            <div class="card stat-card primary" style="border-top: 4px solid #667eea;">
+              <div class="card-body">
+                <h5 class="card-title">💡 Tip</h5>
+                <p style="margin: 0; color: #666;">
+                  Maintain at least 75% attendance to be in good standing. 
+                  <strong id="attendanceTip"></strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10-Day Stats Section -->
+      <div id="tenDayStats" class="section" style="display:none;">
+        <div class="dashboard-header">
+          <h2>📊 Last 10 Days - Attendance Analytics</h2>
+          <p>Comprehensive review of your recent attendance pattern</p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row mb-4">
+          <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card stat-card primary">
+              <div class="card-body text-center">
+                <div class="stat-icon">📚</div>
+                <h5 class="card-title">Total Classes</h5>
+                <h3 id="stat-total" class="stat-value text-primary">0</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card stat-card success">
+              <div class="card-body text-center">
+                <div class="stat-icon">✅</div>
+                <h5 class="card-title">Present</h5>
+                <h3 id="stat-present" class="stat-value text-success">0</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card stat-card danger">
+              <div class="card-body text-center">
+                <div class="stat-icon">❌</div>
+                <h5 class="card-title">Absent</h5>
+                <h3 id="stat-absent" class="stat-value text-danger">0</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card stat-card info">
+              <div class="card-body text-center">
+                <div class="stat-icon">📈</div>
+                <h5 class="card-title">Percentage</h5>
+                <h3 id="stat-perc" class="stat-value text-info">0%</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row mb-4">
+          <div class="col-lg-6 mb-3">
+            <div class="card stat-card">
+              <div class="card-header bg-gradient">
+                <h5 class="mb-0">📊 Attendance Distribution</h5>
+              </div>
+              <div class="card-body">
+                <canvas id="attendChart" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mb-3">
+            <div class="card stat-card">
+              <div class="card-header bg-gradient">
+                <h5 class="mb-0">📋 Subject-wise Analysis (Last 10 Days)</h5>
+              </div>
+              <div class="card-body">
+                <table class="table table-sm table-hover" id="subStatTable">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Subject</th>
+                      <th>Classes</th>
+                      <th>%</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card stat-card">
+          <div class="card-header bg-gradient">
+            <h5 class="mb-0">📅 Daily Attendance (Last 10 Days)</h5>
+          </div>
+          <div class="card-body">
+            <table class="table table-sm table-hover" id="dailyTable">
+              <thead class="table-light">
+                <tr>
+                  <th>Date</th>
+                  <th>Classes</th>
+                  <th>Present</th>
+                  <th>Absent</th>
+                  <th>Late</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- View Attendance Section -->
+      <div id="studentAttendance" class="section" style="display:none;">
+        <div class="dashboard-header">
+          <h2>📄 My Attendance</h2>
+          <p>View your detailed subject-wise attendance records</p>
+        </div>
+
+        <div class="mb-4">
+          <div class="row">
+            <div class="col-md-6">
+              <select class="form-control" id="monthFilter" style="border-radius: 8px; padding: 10px;">
+                <option value="">All Months</option>
+                <option value="2025-12">December 2025</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-primary" onclick="loadStudentAttendance()" style="border-radius: 8px; padding: 10px 30px;">
+                🔍 Filter Records
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card stat-card">
+          <div class="card-header bg-gradient">
+            <h5 class="mb-0">📚 Subject-wise Attendance</h5>
+          </div>
+          <div class="card-body">
+            <table class="table table-hover" id="subWiseTable">
+              <thead class="table-light">
+                <tr>
+                  <th>Subject Code - Name</th>
+                  <th>Total Classes</th>
+                  <th>Attended</th>
+                  <th>Percentage</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="detailView" class="card stat-card" style="display:none; margin-top: 20px;">
+          <div class="card-header bg-gradient">
+            <h5 class="mb-0">📅 Date-wise Details for <span id="detailSub" style="color: #667eea;"></span></h5>
+          </div>
+          <div class="card-body">
+            <table class="table table-sm table-hover" id="dateTable">
+              <thead class="table-light">
+                <tr>
+                  <th>Date</th>
+                  <th>Period</th>
+                  <th>Status</th>
+                  <th>Remark</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Section -->
+      <div id="profile" class="section" style="display:none;">
+        <div class="dashboard-header">
+          <h2>👤 My Profile</h2>
+          <p>Manage your account information and security settings</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card stat-card">
+              <div class="card-header bg-gradient">
+                <h5 class="mb-0">📋 Personal Information</h5>
+              </div>
+              <div class="card-body">
+                <div class="profile-info">
+                  <p><strong>👤 Name:</strong> <span id="profName" style="color: #667eea;"></span></p>
+                  <p><strong>🆔 Roll No:</strong> <span id="profRoll" style="color: #667eea;"></span></p>
+                  <p><strong>✉️ Email:</strong> <span id="profEmail" style="color: #667eea;"></span></p>
+                  <p><strong>📚 Course/Semester/Section:</strong> <span id="profDetails" style="color: #667eea;"></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card stat-card">
+              <div class="card-header bg-gradient">
+                <h5 class="mb-0">🔐 Change Password</h5>
+              </div>
+              <div class="card-body">
+                <form id="changePassForm">
+                  <div class="mb-3">
+                    <label class="form-label">Current Password</label>
+                    <input type="password" class="form-control" id="oldPass" placeholder="Enter your current password" style="border-radius: 8px;">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">New Password</label>
+                    <input type="password" class="form-control" id="newPass" placeholder="Enter new password" required style="border-radius: 8px;">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPass" placeholder="Confirm new password" required style="border-radius: 8px;">
+                  </div>
+                  <button type="submit" class="btn btn-primary" style="border-radius: 8px; padding: 10px 30px;">
+                    🔄 Update Password
+                  </button>
+                </form>
+                <div id="passMsg" class="mt-3"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <footer class="bg-dark text-white text-center py-3 mt-5">
+    <p>&copy; 2025 College Attendance System v1.0</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <div id="globalSpinner" style="display:none;"></div>
+  <script src="script.js" defer></script>
+  <script>
+    let currentStudent;
+    let currentDetailSub;
+
+    function switchStudent(studentId) {
+      if (!studentId) return;
+      currentStudent = data.students.find(s => s.id === parseInt(studentId));
+      if (currentStudent) {
+        loadSectionContent('studentDash');
+        showToast(`Switched to ${currentStudent.name}`, 'success');
+      }
+    }
+
+    function populateStudentSelector() {
+      const selector = document.getElementById('studentSelector');
+      selector.innerHTML = '<option value="">Select Student (Demo)</option>';
+      data.students.forEach(student => {
+        const option = document.createElement('option');
+        option.value = student.id;
+        option.textContent = `${student.name} (${student.rollNo})`;
+        selector.appendChild(option);
+      });
+      // Show selector for demo purposes
+      selector.style.display = 'block';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Small delay to ensure script.js data is loaded
+      setTimeout(function() {
+        const user = getCurrentUser();
+        if (!user || user.role !== 'student') window.location.href = 'index.html';
+        updateHeader();
+        buildSidebar('student');
+        showSection('studentDash');
+        
+        currentStudent = data.students.find(s => s.userId === user.id);
+        if (!currentStudent) {
+          // For demo purposes, use first student if not found
+          currentStudent = data.students[0];
+        }
+        
+        // Populate student selector for demo
+        populateStudentSelector();
+        
+        loadSectionContent('studentDash');
+      }, 100);
+      
+      document.getElementById('changePassForm').addEventListener('submit', changePassword);
+    });
+
+    function loadSectionContent(sectionId) {
+      if (sectionId === 'tenDayStats') {
+        loadTenDayStats();
+      } else if (sectionId === 'studentDash') {
+        // Safety check for currentStudent
+        if (!currentStudent) {
+          currentStudent = data.students.find(s => s.userId === getCurrentUser().id) || data.students[0];
+        }
+        
+        // Display student name and roll
+        document.getElementById('stuName').textContent = currentStudent.name || 'Student';
+        document.getElementById('stuRoll').textContent = currentStudent.rollNo || '-';
+        document.getElementById('stuEmail').textContent = currentStudent.email || '-';
+        
+        // Calculate overall attendance
+        const allSessions = data.attendanceSessions;
+        const total = allSessions.length;
+        const attended = data.attendanceDetails.filter(d => 
+          allSessions.some(s => s.id === d.sessionId) && d.studentId === currentStudent.id && d.status === 'Present'
+        ).length;
+        const absent = data.attendanceDetails.filter(d =>
+          allSessions.some(s => s.id === d.sessionId) && d.studentId === currentStudent.id && d.status === 'Absent'
+        ).length;
+        const perc = total ? (attended / total) * 100 : 0;
+        
+        // Update progress bar
+        const bar = document.getElementById('overallPerc');
+        bar.style.width = perc + '%';
+        document.getElementById('percText').textContent = perc.toFixed(1) + '%';
+        
+        // Update status items
+        document.getElementById('totalClasses').textContent = total;
+        document.getElementById('attendedClasses').textContent = attended;
+        document.getElementById('absentCount').textContent = absent;
+        
+        // Update tip message
+        const tipsArray = [
+          `You need ${Math.max(0, Math.ceil((total * 0.75) - attended))} more classes to reach 75% attendance.`,
+          `Great job! Keep maintaining your attendance above 75%.`,
+          `Attend the next class to improve your percentage!`,
+          `${perc.toFixed(1)}% attendance is your current standing.`
+        ];
+        document.getElementById('attendanceTip').textContent = tipsArray[Math.floor(Math.random() * tipsArray.length)];
+        
+        // Show warning if below 75%
+        const alertSection = document.getElementById('alertSection');
+        alertSection.innerHTML = '';
+        if (perc < 75 && total > 0) {
+          alertSection.innerHTML = `
+            <div class="alert alert-custom warning mt-3">
+              <strong>⚠️ Warning!</strong> Your attendance is below 75%. Please attend more classes to stay in good standing.
+            </div>
+          `;
+        } else if (perc >= 75 && total > 0) {
+          alertSection.innerHTML = `
+            <div class="alert alert-custom success mt-3">
+              <strong>✅ Good!</strong> Your attendance is excellent. Keep it up!
+            </div>
+          `;
+        }
+      } else if (sectionId === 'studentAttendance') {
+        // Populate months (simple, based on data)
+        const months = [...new Set(data.attendanceSessions.map(s => s.date.slice(0,7)))];
+        const select = document.getElementById('monthFilter');
+        select.innerHTML += months.map(m => `<option value="${m}">${m}</option>`).join('');
+        loadStudentAttendance();
+      } else if (sectionId === 'profile') {
+        document.getElementById('profName').textContent = currentStudent.name;
+        document.getElementById('profRoll').textContent = currentStudent.rollNo;
+        document.getElementById('profEmail').textContent = currentStudent.email || 'N/A';
+        const course = data.courses.find(c => c.id === currentStudent.courseId);
+        const dept = data.departments.find(d => d.id === currentStudent.deptId);
+        document.getElementById('profDetails').textContent = `${course ? course.name : ''} / Sem ${currentStudent.semester} / ${currentStudent.section} (${dept ? dept.name : ''})`;
+      }
+    }
+
+    function loadStudentAttendance() {
+      const month = document.getElementById('monthFilter').value;
+      const subjects = data.subjects.filter(s => s.courseId === currentStudent.courseId && s.semester === currentStudent.semester);
+      const tbody = document.querySelector('#subWiseTable tbody');
+      tbody.innerHTML = '';
+      
+      subjects.forEach(sub => {
+        const alloc = data.allocations.find(a => a.subjectId === sub.id && a.semester === currentStudent.semester && a.section === currentStudent.section);
+        if (!alloc) return;
+        
+        let sessions = data.attendanceSessions.filter(s => s.allocationId === alloc.id);
+        if (month) sessions = sessions.filter(s => s.date.startsWith(month));
+        
+        const total = sessions.length;
+        const attended = data.attendanceDetails.filter(d => 
+          sessions.some(ses => ses.id === d.sessionId) && d.studentId === currentStudent.id && (d.status === 'Present' || d.status === 'Excused')
+        ).length;
+        const perc = total ? (attended / total) * 100 : 0;
+        const rowClass = perc < 75 ? 'table-danger' : '';
+        
+        const row = document.createElement('tr');
+        row.className = rowClass;
+        row.innerHTML = `
+          <td>${sub.code} - ${sub.name}</td>
+          <td>${total}</td>
+          <td>${attended}</td>
+          <td>${perc.toFixed(2)}%</td>
+          <td><button class="btn btn-sm btn-info" onclick="showDetails('${sub.code} - ${sub.name}', ${alloc.id}, '${month}')">View Dates</button></td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function showDetails(subName, allocId, month) {
+      currentDetailSub = subName;
+      document.getElementById('detailSub').textContent = subName;
+      
+      let sessions = data.attendanceSessions.filter(s => s.allocationId === allocId);
+      if (month) sessions = sessions.filter(s => s.date.startsWith(month));
+      
+      const details = data.attendanceDetails.filter(d => 
+        sessions.some(s => s.id === d.sessionId) && d.studentId === currentStudent.id
+      );
+      
+      const tbody = document.querySelector('#dateTable tbody');
+      tbody.innerHTML = sessions.map(ses => {
+        const det = details.find(d => d.sessionId === ses.id);
+        const status = det ? det.status : 'Absent'; // Default
+        const remark = det ? det.remark : '';
+        const statusClass = status === 'Present' ? 'text-success' : status === 'Absent' ? 'text-danger' : 'text-warning';
+        return `<tr><td>${ses.date}</td><td>${ses.period}</td><td class="${statusClass}"><strong>${status}</strong></td><td>${remark}</td></tr>`;
+      }).join('');
+      
+      document.getElementById('detailView').style.display = 'block';
+    }
+
+    function changePassword(e) {
+      e.preventDefault();
+      const oldPass = document.getElementById('oldPass').value;
+      const newPass = document.getElementById('newPass').value;
+      const confirm = document.getElementById('confirmPass').value;
+      
+      const user = getCurrentUser();
+      if (user.password !== oldPass) return showMsg('Old password incorrect!', 'danger');
+      if (newPass !== confirm) return showMsg('Passwords do not match!', 'danger');
+      if (newPass.length < 6) return showMsg('New password too short!', 'danger');
+      
+      user.password = newPass;
+      saveData();
+      showMsg('Password changed successfully!', 'success');
+      e.target.reset();
+    }
+
+    function showMsg(msg, type) {
+      const div = document.getElementById('passMsg');
+      div.innerHTML = `<div class="alert alert-${type}">${msg}</div>`;
+    }
+
+    function loadTenDayStats() {
+      // Get sessions from past 10 days
+      const today = new Date();
+      const tenDaysAgo = new Date(today);
+      tenDaysAgo.setDate(tenDaysAgo.getDate() - 10);
+      
+      const tenDaySessions = data.attendanceSessions.filter(s => {
+        const sessDate = new Date(s.date);
+        return sessDate >= tenDaysAgo && sessDate <= today;
+      });
+      
+      // Get attendance for current student
+      const tenDayAttendance = data.attendanceDetails.filter(d => 
+        tenDaySessions.some(s => s.id === d.sessionId) && d.studentId === currentStudent.id
+      );
+      
+      // Calculate overall stats
+      const total = tenDaySessions.length;
+      const present = tenDayAttendance.filter(d => d.status === 'Present').length;
+      const absent = tenDayAttendance.filter(d => d.status === 'Absent').length;
+      const late = tenDayAttendance.filter(d => d.status === 'Late').length;
+      const perc = total ? ((present + late * 0.5) / total * 100) : 0; // 50% credit for late
+      
+      // Update stats cards
+      document.getElementById('stat-total').textContent = total;
+      document.getElementById('stat-present').textContent = present;
+      document.getElementById('stat-absent').textContent = absent;
+      document.getElementById('stat-perc').textContent = perc.toFixed(1) + '%';
+      
+      // Draw chart
+      drawAttendanceChart(present, absent, late);
+      
+      // Subject-wise stats
+      const subjects = data.subjects.filter(s => s.courseId === currentStudent.courseId && s.semester === currentStudent.semester);
+      const subStatBody = document.querySelector('#subStatTable tbody');
+      subStatBody.innerHTML = subjects.map(sub => {
+        const alloc = data.allocations.find(a => a.subjectId === sub.id && a.semester === currentStudent.semester && a.section === currentStudent.section);
+        if (!alloc) return '';
+        
+        const subSessions = tenDaySessions.filter(s => s.allocationId === alloc.id);
+        const subAttendance = tenDayAttendance.filter(d => subSessions.some(s => s.id === d.sessionId));
+        const subPresent = subAttendance.filter(d => d.status === 'Present').length;
+        const subTotal = subSessions.length;
+        const subPerc = subTotal ? (subPresent / subTotal * 100) : 0;
+        const statusBadge = subPerc >= 75 ? '<span class="badge bg-success">Good</span>' : '<span class="badge bg-danger">Low</span>';
+        
+        return `<tr><td>${sub.code}</td><td>${subTotal}</td><td>${subPerc.toFixed(1)}%</td><td>${statusBadge}</td></tr>`;
+      }).join('');
+      
+      // Daily breakdown
+      const dates = [...new Set(tenDaySessions.map(s => s.date))].sort().reverse();
+      const dailyBody = document.querySelector('#dailyTable tbody');
+      dailyBody.innerHTML = dates.map(date => {
+        const daySessions = tenDaySessions.filter(s => s.date === date);
+        const dayAttendance = tenDayAttendance.filter(d => daySessions.some(s => s.id === d.sessionId));
+        const dayPresent = dayAttendance.filter(d => d.status === 'Present').length;
+        const dayAbsent = dayAttendance.filter(d => d.status === 'Absent').length;
+        const dayLate = dayAttendance.filter(d => d.status === 'Late').length;
+        
+        return `<tr>
+          <td>${date}</td>
+          <td>${daySessions.length}</td>
+          <td><span class="badge bg-success">${dayPresent}</span></td>
+          <td><span class="badge bg-danger">${dayAbsent}</span></td>
+          <td><span class="badge bg-warning">${dayLate}</span></td>
+          <td><button class="btn btn-sm btn-info" onclick="showDayDetails('${date}')">View</button></td>
+        </tr>`;
+      }).join('');
+    }
+
+    function drawAttendanceChart(present, absent, late) {
+      const canvas = document.getElementById('attendChart');
+      const ctx = canvas.getContext('2d');
+      
+      // Simple bar chart (no Chart.js)
+      const width = canvas.width = 400;
+      const height = canvas.height = 150;
+      const barWidth = 60;
+      const maxVal = Math.max(present, absent, late) || 1;
+      const scale = 100 / maxVal;
+      
+      ctx.fillStyle = '#f0f0f0';
+      ctx.fillRect(0, 0, width, height);
+      
+      // Present bar (green)
+      ctx.fillStyle = '#28a745';
+      ctx.fillRect(20, height - present * scale - 20, barWidth, present * scale);
+      ctx.fillStyle = '#000';
+      ctx.font = '12px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('Present: ' + present, 50, height - 5);
+      
+      // Absent bar (red)
+      ctx.fillStyle = '#dc3545';
+      ctx.fillRect(100, height - absent * scale - 20, barWidth, absent * scale);
+      ctx.fillText('Absent: ' + absent, 130, height - 5);
+      
+      // Late bar (orange)
+      ctx.fillStyle = '#ffc107';
+      ctx.fillRect(180, height - late * scale - 20, barWidth, late * scale);
+      ctx.fillText('Late: ' + late, 210, height - 5);
+    }
+
+    function showDayDetails(date) {
+      alert(`Details for ${date} will show per-subject breakdown for that day.`);
+    }
+  </script>
+</body>
+</html>

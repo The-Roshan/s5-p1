@@ -1,0 +1,82 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+}
+
+.sidebar {
+  overflow-y: auto;
+  border-right: 1px solid #dee2e6;
+}
+
+.main-content {
+  margin-left: 250px;
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+.table th {
+  background-color: #e9ecef;
+  font-weight: bold;
+}
+
+.alert-low {
+  background-color: #fff3cd;
+  border-color: #ffeaa7;
+  color: #856404;
+}
+
+.progress {
+  background-color: #e9ecef;
+}
+
+.card {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.btn {
+  margin: 0.25rem;
+}
+
+.nav-link:hover {
+  background-color: #e9ecef;
+  border-radius: 0.25rem;
+}
+
+footer {
+  margin-top: auto;
+}
+
+/* --- New styles: Dark theme, animations, responsive sidebar show, badges --- */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.section { animation: fadeIn 0.45s ease-in; }
+
+.dark-theme { background-color: #0f1720; color: #e6eef8; }
+.dark-theme .card, .dark-theme .table, .dark-theme .sidebar { background-color: #111827; color: #e6eef8; }
+.dark-theme .navbar, .dark-theme footer { background-color: #0b1220 !important; }
+
+/* Responsive sidebar toggle */
+.sidebar { transition: transform 0.28s ease-in-out; }
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-110%); position: fixed; z-index: 1050; }
+  .sidebar.show { transform: translateX(0); }
+  main { margin-left: 0 !important; }
+}
+
+/* Spinner container (hidden by default) */
+#globalSpinner { display: none; }
+
+.badge-low { background-color: #dc3545; color: #fff; animation: pulse 2s infinite; }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+/* Responsive table wrapper for small screens */
+.table-responsive { overflow-x: auto; }
