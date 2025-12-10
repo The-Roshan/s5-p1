@@ -193,6 +193,213 @@
         transform: translateY(0);
       }
     }
+
+    /* Mobile Responsive Styles for Student Dashboard */
+    @media (max-width: 992px) {
+      main {
+        margin-left: 0 !important;
+      }
+
+      #sidebar {
+        position: fixed;
+        left: 0;
+        top: 60px;
+        width: 200px;
+        height: calc(100vh - 60px);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      #sidebar.show {
+        transform: translateX(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-header {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+      }
+
+      .dashboard-header h2 {
+        font-size: 22px;
+      }
+
+      .dashboard-header p {
+        font-size: 12px;
+      }
+
+      main {
+        padding: 15px !important;
+      }
+
+      .progress-section {
+        padding: 15px !important;
+        margin-bottom: 20px;
+      }
+
+      .progress-section h5 {
+        font-size: 16px;
+        margin-bottom: 15px;
+      }
+
+      .attendance-status {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 10px;
+        margin-top: 15px;
+      }
+
+      .status-item {
+        padding: 12px !important;
+      }
+
+      .status-item .value {
+        font-size: 20px;
+      }
+
+      .status-item .label {
+        font-size: 11px;
+      }
+
+      .stat-card {
+        margin-bottom: 15px;
+      }
+
+      .stat-card .card-body {
+        padding: 15px !important;
+      }
+
+      .stat-card h3 {
+        font-size: 24px;
+      }
+
+      .card-header {
+        padding: 12px 15px !important;
+      }
+
+      .table-responsive {
+        font-size: 12px;
+      }
+
+      .profile-info p {
+        margin-bottom: 10px;
+        font-size: 13px;
+      }
+
+      .profile-info p strong {
+        min-width: 120px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .dashboard-header h2 {
+        font-size: 18px;
+      }
+
+      .dashboard-header p {
+        font-size: 11px;
+      }
+
+      main {
+        padding: 10px !important;
+      }
+
+      .progress-section {
+        padding: 12px !important;
+      }
+
+      .progress-section h5 {
+        font-size: 14px;
+      }
+
+      .attendance-status {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .status-item {
+        padding: 10px !important;
+      }
+
+      .status-item .value {
+        font-size: 18px;
+      }
+
+      .status-item .label {
+        font-size: 10px;
+      }
+
+      .stat-card .card-body {
+        padding: 12px !important;
+      }
+
+      .stat-card h3 {
+        font-size: 20px;
+      }
+
+      .stat-card .card-title {
+        font-size: 11px;
+        margin-bottom: 10px;
+      }
+
+      .profile-info p {
+        font-size: 12px;
+      }
+
+      .profile-info p strong {
+        display: block;
+        min-width: 100%;
+        margin-bottom: 3px;
+      }
+
+      .nav-link {
+        font-size: 13px;
+        padding: 0.5rem 0.75rem !important;
+      }
+
+      .table-responsive {
+        font-size: 11px;
+      }
+
+      .table thead th {
+        padding: 8px 4px;
+      }
+
+      .table tbody td {
+        padding: 6px 4px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dashboard-header h2 {
+        font-size: 16px;
+      }
+
+      #studentSelector {
+        max-width: 120px !important;
+        font-size: 12px;
+      }
+
+      .stat-card h3 {
+        font-size: 18px;
+      }
+
+      .status-item .value {
+        font-size: 16px;
+      }
+    }
+
+    /* Touch-friendly buttons for mobile */
+    @media (hover: none) and (pointer: coarse) {
+      button, .btn, a.btn {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        min-height: 44px;
+      }
+    }
   </style>
 </head>
 <body>

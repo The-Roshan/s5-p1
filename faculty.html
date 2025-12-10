@@ -34,6 +34,36 @@
       font-size: 14px;
     }
 
+    /* Mobile Responsive Improvements */
+    @media (max-width: 768px) {
+      .faculty-header {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+      }
+
+      .faculty-header h2 {
+        font-size: 22px;
+      }
+
+      .faculty-header p {
+        font-size: 12px;
+      }
+
+      .faculty-header > div {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .faculty-header h2 {
+        font-size: 18px;
+      }
+
+      .faculty-header p {
+        font-size: 11px;
+      }
+    }
+
     .stat-box {
       border: none;
       border-radius: 12px;
@@ -196,6 +226,50 @@
       margin-bottom: 30px;
     }
 
+    @media (max-width: 768px) {
+      .quick-stats {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .quick-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+    }
+
+    /* Student cards responsive grid */
+    @media (max-width: 992px) {
+      #studentCardsContainer {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+        gap: 12px !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #studentCardsContainer {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+        gap: 10px !important;
+      }
+    }
+
+    @media (max-width: 576px) {
+      #studentCardsContainer {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
+        gap: 8px !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #studentCardsContainer {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important;
+        gap: 6px !important;
+      }
+    }
+
     .metric-card {
       background: white;
       border-radius: 10px;
@@ -222,6 +296,35 @@
       color: #999;
       text-transform: uppercase;
       font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .metric-card {
+        padding: 15px;
+      }
+
+      .metric-number {
+        font-size: 28px;
+      }
+
+      .metric-label {
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .metric-card {
+        padding: 12px;
+      }
+
+      .metric-number {
+        font-size: 24px;
+        margin: 5px 0;
+      }
+
+      .metric-label {
+        font-size: 10px;
+      }
     }
 
     /* Student Card Styles for Attendance */
@@ -257,6 +360,18 @@
       background: #fff9f1;
     }
 
+    @media (max-width: 768px) {
+      .student-attendance-card {
+        padding: 12px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .student-attendance-card {
+        padding: 10px;
+      }
+    }
+
     .student-card-header {
       display: flex;
       justify-content: space-between;
@@ -277,6 +392,26 @@
       color: #333;
       font-size: 15px;
       margin: 5px 0;
+    }
+
+    @media (max-width: 768px) {
+      .student-name {
+        font-size: 14px;
+      }
+
+      .student-rollno {
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .student-name {
+        font-size: 13px;
+      }
+
+      .student-rollno {
+        font-size: 10px;
+      }
     }
 
     .student-status-badge {
@@ -349,6 +484,318 @@
       outline: none;
       border-color: #667eea;
       box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.1);
+    }
+
+    /* Mobile & Responsive Layout Improvements */
+    @media (max-width: 992px) {
+      main {
+        margin-left: 0 !important;
+      }
+
+      #sidebar {
+        position: fixed;
+        left: 0;
+        top: 60px;
+        width: 200px;
+        height: calc(100vh - 60px);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      #sidebar.show {
+        transform: translateX(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 15px !important;
+      }
+
+      #sidebar {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .section-card {
+        margin-bottom: 20px;
+        border-left: 3px solid #667eea;
+      }
+
+      .section-card .card-header {
+        padding: 12px 15px;
+      }
+
+      .section-card .card-header h5 {
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .card-body {
+        padding: 15px;
+      }
+
+      .form-group-enhanced {
+        margin-bottom: 15px;
+      }
+
+      .btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .btn-group .btn {
+        flex: 1;
+        min-width: 100px;
+        font-size: 12px;
+      }
+
+      .table-responsive {
+        font-size: 12px;
+      }
+
+      .table-enhanced thead th {
+        padding: 10px 5px;
+      }
+
+      .table-enhanced tbody td {
+        padding: 8px 5px;
+      }
+
+      .assignment-item {
+        padding: 12px;
+        margin-bottom: 8px;
+      }
+
+      .assignment-name {
+        font-size: 14px;
+      }
+
+      .assignment-code {
+        font-size: 12px;
+      }
+
+      .assignment-meta {
+        font-size: 11px;
+        margin-top: 6px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      body {
+        font-size: 14px;
+      }
+
+      main {
+        padding: 10px !important;
+      }
+
+      .navbar-brand {
+        font-size: 16px;
+      }
+
+      .section-card {
+        margin-bottom: 15px;
+        border-radius: 8px;
+      }
+
+      .section-card .card-header {
+        padding: 10px 12px;
+      }
+
+      .section-card .card-header h5 {
+        font-size: 14px;
+      }
+
+      .card-body {
+        padding: 12px;
+      }
+
+      .row {
+        margin-right: -5px;
+        margin-left: -5px;
+      }
+
+      .row > [class*="col-"] {
+        padding-right: 5px;
+        padding-left: 5px;
+      }
+
+      .form-group-enhanced {
+        margin-bottom: 12px;
+      }
+
+      .form-group-enhanced label {
+        margin-bottom: 5px;
+        font-size: 12px;
+      }
+
+      .form-control-enhanced {
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+
+      .btn-primary-grad {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+
+      .btn-group {
+        gap: 6px;
+        margin-bottom: 15px;
+      }
+
+      .btn-group .btn {
+        font-size: 11px;
+        padding: 6px 8px;
+      }
+
+      .student-status-badge {
+        font-size: 10px;
+        padding: 3px 8px;
+        margin-top: 6px;
+      }
+
+      .table-responsive {
+        font-size: 11px;
+        overflow-x: auto;
+      }
+
+      .table-enhanced {
+        margin-bottom: 0;
+      }
+
+      .table-enhanced thead th {
+        padding: 8px 3px;
+        font-size: 11px;
+      }
+
+      .table-enhanced tbody td {
+        padding: 6px 3px;
+        font-size: 11px;
+      }
+
+      .student-form-group {
+        margin-top: 8px;
+      }
+
+      .student-form-group label {
+        font-size: 11px;
+        margin-bottom: 4px;
+      }
+
+      .student-form-group select,
+      .student-form-group input {
+        padding: 5px 4px;
+        font-size: 11px;
+      }
+
+      .badge-custom {
+        padding: 4px 8px;
+        font-size: 10px;
+      }
+
+      .stat-icon {
+        font-size: 22px;
+      }
+
+      .tab-content {
+        font-size: 12px;
+      }
+
+      .nav-tabs {
+        border-bottom: 2px solid #e0e0e0;
+      }
+
+      .nav-tabs .nav-link {
+        font-size: 12px;
+        padding: 0.5rem 0.7rem;
+        border: none;
+      }
+
+      .nav-tabs .nav-link.active {
+        border-bottom: 3px solid #667eea;
+        color: #667eea;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .faculty-header h2 {
+        font-size: 16px;
+      }
+
+      .faculty-header p {
+        font-size: 10px;
+      }
+
+      .metric-number {
+        font-size: 20px;
+      }
+
+      .section-card .card-header h5 {
+        font-size: 13px;
+      }
+
+      .btn-primary-grad {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+
+      .quick-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        margin-bottom: 15px;
+      }
+
+      .metric-card {
+        padding: 10px;
+      }
+
+      .student-attendance-card {
+        padding: 8px;
+      }
+
+      .student-name {
+        font-size: 12px;
+      }
+
+      .student-card-header {
+        margin-bottom: 8px;
+      }
+    }
+
+    /* Sidebar Responsive */
+    #sidebar {
+      overflow-y: auto;
+    }
+
+    #sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #sidebar::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    #sidebar::-webkit-scrollbar-thumb {
+      background: #667eea;
+      border-radius: 3px;
+    }
+
+    #sidebar::-webkit-scrollbar-thumb:hover {
+      background: #764ba2;
+    }
+
+    /* Touch-friendly buttons for mobile */
+    @media (hover: none) and (pointer: coarse) {
+      button, .btn, a.btn {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        min-height: 44px;
+      }
     }
   </style>
 </head>
@@ -577,8 +1024,8 @@
             </div>
 
             <form id="attendanceForm" class="mb-4">
-              <div class="row">
-                <div class="col-md-5">
+              <div class="row g-2 g-md-3">
+                <div class="col-12 col-md-5">
                   <div class="form-group-enhanced">
                     <label for="subjectSelect"><strong>📚 Select Subject *</strong></label>
                     <select class="form-control form-control-enhanced" id="subjectSelect" onchange="showSelectedSubjectInfo()" required>
@@ -587,23 +1034,23 @@
                     <small style="color: #999; margin-top: 5px; display: block;">Shows all subjects you are assigned</small>
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-12 col-sm-6 col-md-3">
                   <div class="form-group-enhanced">
                     <label for="attDate"><strong>📅 Attendance Date *</strong></label>
                     <input type="date" class="form-control form-control-enhanced" id="attDate" value="2025-12-09" required>
                     <small style="color: #999; margin-top: 5px; display: block;">Select date for attendance</small>
                   </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-12 col-sm-6 col-md-2">
                   <div class="form-group-enhanced">
                     <label for="period"><strong>🕐 Period (1-6) *</strong></label>
                     <input type="number" class="form-control form-control-enhanced" id="period" placeholder="1-6" min="1" max="6" required>
                     <small style="color: #999; margin-top: 5px; display: block;">Period number</small>
                   </div>
                 </div>
-                <div class="col-md-2 d-flex align-items-end">
+                <div class="col-12 col-md-2 d-flex align-items-end">
                   <button type="submit" class="btn btn-primary-grad w-100" onclick="createAttendanceSession(event); return false;">
-                    <span>📋</span> Create Session
+                    <span>📋</span> <span class="d-none d-sm-inline">Create Session</span><span class="d-sm-none">Create</span>
                   </button>
                 </div>
               </div>
@@ -623,8 +1070,8 @@
               <div id="studentCardsContainer" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; margin-bottom: 20px;"></div>
               
               <!-- Table View Toggle -->
-              <div style="margin-bottom: 15px; display: flex; gap: 10px;">
-                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="toggleTableView()">📊 Switch to Table View</button>
+              <div style="margin-bottom: 15px; display: flex; flex-wrap: wrap; gap: 10px;">
+                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="toggleTableView()">📊 Table View</button>
                 <button type="button" class="btn btn-outline-info btn-sm" onclick="refreshCardStatus()">🔄 Refresh</button>
               </div>
 

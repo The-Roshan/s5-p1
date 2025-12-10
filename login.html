@@ -304,10 +304,11 @@
     }
 
     /* Responsive */
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
       .login-container {
         margin: 15px;
         border-radius: 15px;
+        max-width: 100%;
       }
 
       .login-header {
@@ -316,13 +317,152 @@
 
       .login-header h1 {
         font-size: 24px;
+        margin-bottom: 5px;
       }
+
+      .login-header p {
+        font-size: 13px;
+      }
+
+      .logo-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+        margin-bottom: 12px;
+      }
+
       .login-body {
-        padding: 30px 20px;
+        padding: 25px 20px;
+      }
+
+      .form-control, .form-select {
+        height: 44px;
+        font-size: 14px;
+        padding: 10px 14px;
+      }
+
+      .form-label {
+        font-size: 13px;
+        margin-bottom: 6px;
+      }
+
+      .btn-login {
+        height: 44px;
+        font-size: 14px;
       }
 
       .demo-credentials {
         grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .credential-item {
+        padding: 10px;
+      }
+
+      .credential-item .role {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 0;
+        min-height: 100vh;
+      }
+
+      .login-container {
+        margin: 10px;
+        border-radius: 12px;
+        width: auto;
+      }
+
+      .login-header {
+        padding: 25px 15px;
+      }
+
+      .login-header h1 {
+        font-size: 20px;
+      }
+
+      .logo-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .login-body {
+        padding: 20px 15px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-control, .form-select {
+        height: 42px;
+        font-size: 13px;
+        padding: 8px 12px;
+      }
+
+      .form-label {
+        font-size: 12px;
+        margin-bottom: 5px;
+      }
+
+      .btn-login {
+        height: 42px;
+        font-size: 13px;
+        margin-top: 8px;
+      }
+
+      .demo-credentials {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 15px;
+      }
+
+      .credential-item {
+        padding: 8px;
+        font-size: 12px;
+      }
+
+      .credential-item .role {
+        font-size: 13px;
+      }
+
+      .credential-item .user {
+        font-size: 9px;
+        margin-top: 2px;
+      }
+
+      .password-toggle {
+        right: 12px;
+        font-size: 16px;
+      }
+
+      .error-message, .success-message {
+        font-size: 12px;
+      }
+    }
+
+    /* Touch-friendly buttons for mobile */
+    @media (hover: none) and (pointer: coarse) {
+      button, .btn, a.btn {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        min-height: 44px;
+      }
+
+      .btn-login {
+        height: auto;
+        min-height: 44px;
+      }
+
+      .form-control, .form-select {
+        min-height: 44px;
+        font-size: 16px; /* Prevents zoom on iOS */
       }
     }
   </style>
