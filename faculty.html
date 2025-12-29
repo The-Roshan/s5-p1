@@ -797,6 +797,312 @@
         min-height: 44px;
       }
     }
+
+    /* Professional Data Interface Styling */
+    .data-table-wrapper {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .data-table-wrapper table {
+      margin-bottom: 0;
+    }
+
+    .data-table-wrapper thead {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .data-table-wrapper thead th {
+      padding: 18px 15px;
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: none;
+      vertical-align: middle;
+    }
+
+    .data-table-wrapper tbody td {
+      padding: 15px;
+      border-color: #f0f0f0;
+      vertical-align: middle;
+      font-size: 14px;
+    }
+
+    .data-table-wrapper tbody tr {
+      transition: all 0.3s ease;
+    }
+
+    .data-table-wrapper tbody tr:hover {
+      background-color: #f8f9ff;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+    }
+
+    /* Status Badge Styles - Consistent */
+    .status-badge {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      min-width: 70px;
+      text-align: center;
+    }
+
+    .status-present {
+      background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+      color: #0a5f4f;
+    }
+
+    .status-absent {
+      background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      color: #8b0000;
+    }
+
+    .status-leave {
+      background: linear-gradient(135deg, #ffa751 0%, #ffe259 100%);
+      color: #6b4423;
+    }
+
+    .status-pending {
+      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+      color: #595959;
+    }
+
+    /* Real-time Update Animation */
+    @keyframes liveUpdate {
+      0% { background-color: rgba(102, 126, 234, 0.1); }
+      100% { background-color: transparent; }
+    }
+
+    .live-updated {
+      animation: liveUpdate 0.8s ease-out;
+    }
+
+    /* Info Panel Professional Style */
+    .info-panel {
+      background: linear-gradient(135deg, #f5f7fa 0%, #f9f9fb 100%);
+      border-left: 4px solid #667eea;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .info-panel-header {
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 14px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .info-item:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      color: #666;
+      font-weight: 500;
+    }
+
+    .info-value {
+      color: #333;
+      font-weight: 600;
+    }
+
+    /* Professional Button Styles */
+    .btn-professional {
+      border-radius: 8px;
+      font-weight: 600;
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 13px;
+    }
+
+    .btn-professional:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Section Header Consistency */
+    .section-header-pro {
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+    }
+
+    .section-header-pro h3 {
+      color: #333;
+      font-weight: 700;
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .section-header-pro .timestamp {
+      font-size: 12px;
+      color: #999;
+      margin-top: 5px;
+    }
+
+    /* Responsive Data Display */
+    @media (max-width: 768px) {
+      .data-table-wrapper thead th {
+        padding: 12px 10px;
+        font-size: 12px;
+      }
+
+      .data-table-wrapper tbody td {
+        padding: 12px 10px;
+        font-size: 12px;
+      }
+
+      .info-panel {
+        padding: 15px;
+      }
+
+      .info-item {
+        font-size: 12px;
+      }
+
+      .section-header-pro h3 {
+        font-size: 18px;
+      }
+
+      .form-control-enhanced {
+        font-size: 13px;
+        padding: 8px 12px;
+      }
+
+      .btn-professional {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+
+      .metric-card {
+        padding: 15px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .data-table-wrapper {
+        font-size: 11px;
+        overflow-x: auto;
+      }
+
+      .data-table-wrapper thead th,
+      .data-table-wrapper tbody td {
+        padding: 8px;
+        font-size: 11px;
+      }
+
+      .status-badge {
+        padding: 4px 8px;
+        font-size: 10px;
+        min-width: 55px;
+      }
+
+      .info-panel {
+        padding: 12px;
+        margin-bottom: 15px;
+      }
+
+      .section-header-pro h3 {
+        font-size: 16px;
+      }
+
+      .btn-professional {
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+
+      .form-control-enhanced {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+
+      .student-attendance-card {
+        padding: 10px;
+      }
+
+      .student-name {
+        font-size: 13px;
+      }
+
+      .student-rollno {
+        font-size: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .data-table-wrapper {
+        border-radius: 8px;
+      }
+
+      .data-table-wrapper thead th,
+      .data-table-wrapper tbody td {
+        padding: 6px;
+        font-size: 10px;
+      }
+
+      .section-header-pro h3 {
+        font-size: 15px;
+      }
+
+      .metric-card {
+        padding: 10px;
+      }
+
+      .metric-number {
+        font-size: 20px;
+      }
+
+      .form-control-enhanced {
+        font-size: 11px;
+        padding: 5px 8px;
+      }
+
+      .btn-professional {
+        padding: 6px 8px;
+        font-size: 10px;
+      }
+    }
+
+    /* Touch-friendly buttons for mobile */
+    @media (hover: none) and (pointer: coarse) {
+      .btn-professional, button, .btn {
+        min-height: 44px;
+        padding: 12px 15px;
+      }
+    }
+
+      .info-panel {
+        padding: 12px;
+        margin-bottom: 15px;
+      }
+
+      .section-header-pro h3 {
+        font-size: 16px;
+      }
+
+      .btn-professional {
+        padding: 8px 12px;
+        font-size: 11px;
+      }
+    
+
   </style>
 </head>
 <body>
@@ -1037,7 +1343,7 @@
                 <div class="col-12 col-sm-6 col-md-3">
                   <div class="form-group-enhanced">
                     <label for="attDate"><strong>📅 Attendance Date *</strong></label>
-                    <input type="date" class="form-control form-control-enhanced" id="attDate" value="2025-12-09" required>
+                    <input type="date" class="form-control form-control-enhanced" id="attDate" value="2025-12-21" required>
                     <small style="color: #999; margin-top: 5px; display: block;">Select date for attendance</small>
                   </div>
                 </div>
@@ -1049,7 +1355,7 @@
                   </div>
                 </div>
                 <div class="col-12 col-md-2 d-flex align-items-end">
-                  <button type="submit" class="btn btn-primary-grad w-100" onclick="createAttendanceSession(event); return false;">
+                  <button type="submit" class="btn btn-professional w-100" onclick="createAttendanceSession(event); return false;">
                     <span>📋</span> <span class="d-none d-sm-inline">Create Session</span><span class="d-sm-none">Create</span>
                   </button>
                 </div>
@@ -1297,15 +1603,21 @@
       const alloc = data.allocations.find(a => a.id === allocId);
       currentStudents = data.students.filter(s => s.semester === alloc.semester && s.section === alloc.section);
       
-      // Generate student cards
+      // Generate student cards with professional formatting
       const cardsContainer = document.getElementById('studentCardsContainer');
-      cardsContainer.innerHTML = currentStudents.map((s, index) => `
-        <div class="student-attendance-card" id="studentCard_${index}">
+      const formattedStudents = currentStudents.map((s, i) => formatStudentRow(s, i));
+      cardsContainer.innerHTML = currentStudents.map((s, index) => {
+        const formatted = formattedStudents[index];
+        return `
+        <div class="student-attendance-card" id="studentCard_${index}" data-student-id="${s.id}">
           <div class="student-card-header">
-            <span class="student-rollno">${s.rollNo}</span>
+            <span class="student-rollno">${formatted.rollNo}</span>
             <span id="statusBadge_${index}"></span>
           </div>
-          <div class="student-name">${s.name}</div>
+          <div class="student-name">${formatted.name}</div>
+          <div style="font-size: 12px; color: #999; margin-bottom: 10px;">
+            <span>${formatted.section} • Sem ${formatted.semester}</span>
+          </div>
           <div class="student-form-group">
             <label>Status</label>
             <select class="statusSelect" data-student-id="${s.id}" onchange="updateCardStatus(${index})">
@@ -1313,7 +1625,7 @@
               <option value="Present">✅ Present</option>
               <option value="Absent">❌ Absent</option>
               <option value="Late">🕐 Late</option>
-              <option value="Excused">⏳ Excused</option>
+              <option value="Leave">🏥 Leave</option>
             </select>
           </div>
           <div class="student-form-group">
@@ -1321,17 +1633,27 @@
             <input type="text" class="remarkInput" placeholder="e.g., Medical, Leave..." data-student-id="${s.id}">
           </div>
         </div>
-      `).join('');
+      `}).join('');
       
-      // Also generate table rows
+      // Also generate table rows with professional styling
       const tbody = document.getElementById('attStudentsTbody');
-      tbody.innerHTML = currentStudents.map(s => 
-        `<tr>
-          <td>${s.rollNo}</td><td>${s.name}</td>
-          <td><select class="form-control statusSelect" data-student-id="${s.id}"><option value="">Select</option><option value="Present">Present</option><option value="Absent">Absent</option><option value="Late">Late</option><option value="Excused">Excused</option></select></td>
-          <td><input type="text" class="form-control remarkInput" placeholder="Remark" data-student-id="${s.id}"></td>
-        </tr>`
-      ).join('');
+      const formattedRows = currentStudents.map((s, i) => {
+        const formatted = formatStudentRow(s, i);
+        return {
+          ...formatted,
+          statusHtml: '<select class="form-control statusSelect" data-student-id="' + s.id + '"><option value="">Select</option><option value="Present">Present</option><option value="Absent">Absent</option><option value="Late">Late</option><option value="Leave">Leave</option></select>',
+          remarkHtml: '<input type="text" class="form-control remarkInput" placeholder="Remark" data-student-id="' + s.id + '">'
+        };
+      });
+      
+      tbody.innerHTML = formattedRows.map(row => `
+        <tr class="data-row" data-student-id="${row.id}">
+          <td>${row.rollNo}</td>
+          <td>${row.name}</td>
+          <td>${row.statusHtml}</td>
+          <td>${row.remarkHtml}</td>
+        </tr>
+      `).join('');
       
       document.getElementById('studentList').style.display = 'block';
     }
@@ -1343,19 +1665,14 @@
       const badge = document.getElementById(`statusBadge_${index}`);
       
       // Update card style
-      card.classList.remove('present', 'absent', 'late');
+      card.classList.remove('present', 'absent', 'late', 'leave');
       if (status === 'Present') card.classList.add('present');
       else if (status === 'Absent') card.classList.add('absent');
       else if (status === 'Late') card.classList.add('late');
+      else if (status === 'Leave') card.classList.add('leave');
       
-      // Update badge
-      const badges = {
-        'Present': '✅ Present',
-        'Absent': '❌ Absent',
-        'Late': '🕐 Late',
-        'Excused': '⏳ Excused'
-      };
-      badge.innerHTML = status ? `<span class="student-status-badge status-${status.toLowerCase()}">${badges[status]}</span>` : '';
+      // Update badge using professional rendering
+      badge.innerHTML = status ? renderStatusBadge(status) : '';
     }
 
     function toggleTableView() {
@@ -1413,19 +1730,27 @@
           });
         }
         saved++;
+        
+        // Real-time notification on row
+        const row = document.querySelector(`[data-student-id="${stu.id}"]`);
+        if (row) notifyLiveUpdate(row, 600);
       });
       
       if (empty > 0) {
-        alert(`❌ Error: ${empty} student(s) have no status selected!`);
+        showToast(`❌ ${empty} student(s) have no status selected!`, 'error', 3000);
         return;
       }
       
-      saveData();
-      alert(`✅ Success! ${saved} attendance record(s) saved!`);
-      document.getElementById('studentList').style.display = 'none';
-      document.getElementById('studentCardsContainer').innerHTML = '';
-      document.getElementById('attStudentsTbody').innerHTML = '';
-      loadSectionContent('takeAttendance');
+      updateDataWithNotification(() => {
+        // Data is already updated above
+      });
+      
+      setTimeout(() => {
+        document.getElementById('studentList').style.display = 'none';
+        document.getElementById('studentCardsContainer').innerHTML = '';
+        document.getElementById('attStudentsTbody').innerHTML = '';
+        loadSectionContent('takeAttendance');
+      }, 1500);
     }
 
     function loadViewAttendance() {

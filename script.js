@@ -336,6 +336,294 @@ function toggleTheme() {
 }
 applyTheme();
 
+// Real-time Update Functions
+function notifyLiveUpdate(element, duration = 800) {
+  if (element) {
+    element.classList.add('live-updated');
+    setTimeout(() => element.classList.remove('live-updated'), duration);
+  }
+}
+
+// Real-time data update with notification
+function updateDataWithNotification(updateCallback) {
+  try {
+    updateCallback();
+    saveData();
+    const elements = document.querySelectorAll('.live-updated');
+    elements.forEach(el => notifyLiveUpdate(el));
+  } catch (error) {
+    console.error('Update error:', error);
+    showToast('Error updating data', 'error');
+  }
+}
+
+// Format data consistently
+function formatStudentRow(student, index = 0) {
+  return {
+    id: student.id,
+    rollNo: student.rollNo || '-',
+    name: student.name || '-',
+    section: student.section || 'A',
+    semester: student.semester || 1,
+    status: 'Active'
+  };
+}
+
+function formatFacultyRow(faculty, index = 0) {
+  return {
+    id: faculty.id,
+    name: faculty.name || '-',
+    designation: faculty.designation || '-',
+    department: faculty.contact || '-',
+    email: faculty.email || '-',
+    status: 'Active'
+  };
+}
+
+function formatAttendanceRow(session, detail, index = 0) {
+  const student = data.students.find(s => s.id === detail.studentId);
+  const allocation = data.allocations.find(a => a.id === session.allocationId);
+  const subject = allocation ? data.subjects.find(s => s.id === allocation.subjectId) : null;
+  
+  return {
+    date: session.date || '-',
+    period: session.period || 1,
+    subject: subject?.name || '-',
+    student: student?.rollNo || '-',
+    studentName: student?.name || '-',
+    status: detail.status || 'Pending'
+  };
+}
+
+// Status badge rendering
+function renderStatusBadge(status) {
+  const statusMap = {
+    'Present': 'status-present',
+    'Absent': 'status-absent',
+    'Late': 'status-leave',
+    'Pending': 'status-pending',
+    'Active': 'status-active',
+    'Inactive': 'status-inactive'
+  };
+  
+  const className = statusMap[status] || 'status-pending';
+  return `<span class="status-badge ${className}">${status}</span>`;
+}
+
+// Professional data table rendering
+function renderDataTable(data, columns, containerSelector) {
+  const container = document.querySelector(containerSelector);
+  if (!container) return;
+  
+  let html = `
+    <div class="table-responsive data-table-wrapper">
+      <table class="table table-hover mb-0">
+        <thead>
+          <tr>
+  `;
+  
+  columns.forEach(col => {
+    html += `<th>${col.label}</th>`;
+  });
+  
+  html += `
+          </tr>
+        </thead>
+        <tbody>
+  `;
+  
+  data.forEach(row => {
+    html += `<tr>`;
+    columns.forEach(col => {
+      const value = row[col.key] || '-';
+      const rendered = col.render ? col.render(value, row) : value;
+      html += `<td>${rendered}</td>`;
+    });
+    html += `</tr>`;
+  });
+  
+  html += `
+        </tbody>
+      </table>
+    </div>
+  `;
+  
+  container.innerHTML = html;
+}
+
+// Info panel rendering
+function renderInfoPanel(data, title, containerSelector) {
+  const container = document.querySelector(containerSelector);
+  if (!container) return;
+  
+  let html = `
+    <div class="info-panel">
+      <div class="info-panel-header">${title}</div>
+  `;
+  
+  Object.entries(data).forEach(([key, value]) => {
+    const label = key.replace(/([A-Z])/g, ' $1').trim();
+    html += `
+      <div class="info-item">
+        <span class="info-label">${label}:</span>
+        <span class="info-value">${value || '-'}</span>
+      </div>
+    `;
+  });
+  
+  html += `</div>`;
+  container.innerHTML = html;
+}
+
+// ===== PROFESSIONAL UI ENHANCEMENT FUNCTIONS =====
+
+// Real-time Update Notification with Animation
+function notifyLiveUpdate(element, duration = 800) {
+  if (!element) return;
+  element.classList.add('live-updated');
+  setTimeout(() => {
+    element.classList.remove('live-updated');
+  }, duration);
+}
+
+// Update data with automatic notification
+function updateDataWithNotification(updateCallback) {
+  try {
+    updateCallback();
+    saveData();
+    showToast('✓ Data updated successfully', 'success', 2000);
+  } catch (error) {
+    showToast('✗ Update failed: ' + error.message, 'error', 3000);
+  }
+}
+
+// Format Student Row - Consistent Display
+function formatStudentRow(student, index) {
+  return {
+    id: student.id,
+    index: index + 1,
+    rollNo: student.rollNo,
+    name: student.name,
+    section: student.section,
+    semester: student.semester,
+    email: student.email,
+    status: getStudentStatus(student.id)
+  };
+}
+
+// Format Faculty Row - Consistent Display
+function formatFacultyRow(faculty, index) {
+  return {
+    id: faculty.id,
+    index: index + 1,
+    name: faculty.name,
+    designation: faculty.designation,
+    contact: faculty.contact,
+    email: faculty.email,
+    qualification: faculty.qualification,
+    status: 'Active'
+  };
+}
+
+// Format Attendance Row - Consistent Display
+function formatAttendanceRow(session, detail, index) {
+  const student = data.students.find(s => s.id === detail.studentId);
+  return {
+    id: detail.id,
+    index: index + 1,
+    date: session.date,
+    period: session.period,
+    rollNo: student?.rollNo || '-',
+    name: student?.name || '-',
+    status: detail.status,
+    remark: detail.remark || '-'
+  };
+}
+
+// Render Status Badge with Professional Styling
+function renderStatusBadge(status) {
+  const statusMap = {
+    'Present': 'status-present',
+    'Absent': 'status-absent',
+    'Late': 'status-late',
+    'Leave': 'status-leave',
+    'Pending': 'status-pending',
+    'Active': 'status-active',
+    'Inactive': 'status-inactive'
+  };
+  
+  const badgeClass = statusMap[status] || 'status-pending';
+  return `<span class="status-badge ${badgeClass}">${status?.toUpperCase() || 'N/A'}</span>`;
+}
+
+// Get Student Attendance Status
+function getStudentStatus(studentId) {
+  const today = new Date().toISOString().split('T')[0];
+  const todayAttendance = data.attendanceDetails.filter(a => {
+    const session = data.attendanceSessions.find(s => s.id === a.sessionId);
+    return session && session.date === today && a.studentId === studentId;
+  });
+  
+  if (todayAttendance.length === 0) return 'Pending';
+  const latestStatus = todayAttendance[todayAttendance.length - 1].status;
+  return latestStatus;
+}
+
+// Render Data Table with Professional Styling
+function renderDataTable(data, columns, containerSelector) {
+  const container = document.querySelector(containerSelector);
+  if (!container || !Array.isArray(data)) return;
+  
+  let html = `<div class="data-table-wrapper"><table class="table table-hover">
+    <thead>
+      <tr>`;
+  
+  columns.forEach(col => {
+    html += `<th>${col.label}</th>`;
+  });
+  
+  html += `</tr></thead><tbody>`;
+  
+  data.forEach(row => {
+    html += `<tr>`;
+    columns.forEach(col => {
+      let cellContent = row[col.key] || '-';
+      if (col.render && typeof col.render === 'function') {
+        cellContent = col.render(cellContent);
+      }
+      html += `<td>${cellContent}</td>`;
+    });
+    html += `</tr>`;
+  });
+  
+  html += `</tbody></table></div>`;
+  container.innerHTML = html;
+}
+
+// Render Professional Info Panel
+function renderInfoPanel(data, title, containerSelector) {
+  const container = document.querySelector(containerSelector);
+  if (!container) return;
+  
+  let html = `
+    <div class="info-panel">
+      <div class="info-panel-header">${title}</div>
+  `;
+  
+  Object.entries(data).forEach(([key, value]) => {
+    const label = key.replace(/([A-Z])/g, ' $1').trim();
+    html += `
+      <div class="info-item">
+        <span class="info-label">${label}:</span>
+        <span class="info-value">${value || '-'}</span>
+      </div>
+    `;
+  });
+  
+  html += `</div>`;
+  container.innerHTML = html;
+}
+
 // Load confetti library once
 (function loadConfetti(){
   const s = document.createElement('script');
@@ -354,3 +642,11 @@ window.showToast = showToast;
 window.showLoading = showLoading;
 window.toggleTheme = toggleTheme;
 window.celebrate = celebrate;
+window.notifyLiveUpdate = notifyLiveUpdate;
+window.updateDataWithNotification = updateDataWithNotification;
+window.formatStudentRow = formatStudentRow;
+window.formatFacultyRow = formatFacultyRow;
+window.formatAttendanceRow = formatAttendanceRow;
+window.renderStatusBadge = renderStatusBadge;
+window.renderDataTable = renderDataTable;
+window.renderInfoPanel = renderInfoPanel;

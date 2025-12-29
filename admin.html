@@ -212,6 +212,390 @@
         min-height: 44px;
       }
     }
+
+    /* Professional Data Interface Styling for Admin */
+    .data-table-wrapper {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .data-table-wrapper table {
+      margin-bottom: 0;
+    }
+
+    .data-table-wrapper thead {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .data-table-wrapper thead th {
+      padding: 18px 15px;
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: none;
+      vertical-align: middle;
+    }
+
+    .data-table-wrapper tbody td {
+      padding: 15px;
+      border-color: #f0f0f0;
+      vertical-align: middle;
+      font-size: 14px;
+    }
+
+    .data-table-wrapper tbody tr {
+      transition: all 0.3s ease;
+    }
+
+    .data-table-wrapper tbody tr:hover {
+      background-color: #f8f9ff;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+    }
+
+    /* Status Badge Styles - Consistent */
+    .status-badge {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      min-width: 70px;
+      text-align: center;
+    }
+
+    .status-active {
+      background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+      color: #0a5f4f;
+    }
+
+    .status-inactive {
+      background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      color: #8b0000;
+    }
+
+    .status-pending {
+      background: linear-gradient(135deg, #ffa751 0%, #ffe259 100%);
+      color: #6b4423;
+    }
+
+    /* Real-time Update Animation */
+    @keyframes liveUpdate {
+      0% { background-color: rgba(102, 126, 234, 0.1); }
+      100% { background-color: transparent; }
+    }
+
+    .live-updated {
+      animation: liveUpdate 0.8s ease-out;
+    }
+
+    /* Admin Metrics Card */
+    .metric-card-admin {
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      border: none;
+      transition: all 0.3s ease;
+      background: white;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .metric-card-admin:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .metric-card-admin h3 {
+      font-weight: 700;
+      margin: 10px 0;
+      font-size: 32px;
+    }
+
+    .metric-card-admin p {
+      color: #999;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin: 0;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Info Panel Professional Style */
+    .info-panel-admin {
+      background: linear-gradient(135deg, #f5f7fa 0%, #f9f9fb 100%);
+      border-left: 4px solid #667eea;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .info-panel-admin-header {
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .info-item-admin {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 14px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .info-item-admin:last-child {
+      border-bottom: none;
+    }
+
+    .info-label-admin {
+      color: #666;
+      font-weight: 500;
+    }
+
+    .info-value-admin {
+      color: #333;
+      font-weight: 600;
+    }
+
+    /* Section Header Consistency */
+    .section-header-admin {
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+    }
+
+    .section-header-admin h3 {
+      color: #333;
+      font-weight: 700;
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .section-header-admin .timestamp {
+      font-size: 12px;
+      color: #999;
+      margin-top: 5px;
+    }
+
+    /* Professional Button Styles */
+    .btn-admin-pro {
+      border-radius: 8px;
+      font-weight: 600;
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 13px;
+    }
+
+    .btn-admin-pro:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Responsive Data Display for Admin */
+    @media (max-width: 992px) {
+      main {
+        padding: 15px !important;
+      }
+
+      #sidebar {
+        width: 180px;
+      }
+
+      .metric-card-admin {
+        padding: 20px;
+      }
+
+      .metric-card-admin h3 {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 12px !important;
+        margin-left: 0 !important;
+      }
+
+      #sidebar {
+        position: fixed;
+        left: 0;
+        top: 56px;
+        width: 220px;
+        height: calc(100vh - 56px);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+      }
+
+      #sidebar.show {
+        transform: translateX(0);
+      }
+
+      .data-table-wrapper thead th {
+        padding: 12px 10px;
+        font-size: 12px;
+      }
+
+      .data-table-wrapper tbody td {
+        padding: 12px 10px;
+        font-size: 12px;
+      }
+
+      .metric-card-admin {
+        padding: 18px;
+      }
+
+      .metric-card-admin h3 {
+        font-size: 26px;
+      }
+
+      .info-panel-admin {
+        padding: 15px;
+      }
+
+      .info-item-admin {
+        font-size: 12px;
+      }
+
+      .section-header-admin h3 {
+        font-size: 18px;
+      }
+
+      .form-control-enhanced {
+        font-size: 13px;
+        padding: 8px 12px;
+      }
+
+      .btn-professional {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      main {
+        padding: 10px !important;
+      }
+
+      .data-table-wrapper {
+        font-size: 11px;
+        border-radius: 8px;
+        overflow-x: auto;
+      }
+
+      .data-table-wrapper thead th,
+      .data-table-wrapper tbody td {
+        padding: 8px;
+        font-size: 11px;
+        white-space: nowrap;
+      }
+
+      .status-badge {
+        padding: 4px 8px;
+        font-size: 10px;
+        min-width: 55px;
+      }
+
+      .metric-card-admin {
+        padding: 15px;
+      }
+
+      .metric-card-admin h3 {
+        font-size: 24px;
+      }
+
+      .info-panel-admin {
+        padding: 12px;
+        margin-bottom: 15px;
+      }
+
+      .section-header-admin h3 {
+        font-size: 16px;
+      }
+
+      .section-header-admin .timestamp {
+        font-size: 11px;
+      }
+
+      .btn-professional {
+        padding: 8px 10px;
+        font-size: 11px;
+        width: 100%;
+        margin-bottom: 8px;
+      }
+
+      .form-control-enhanced {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+
+      .row > [class*="col-"] {
+        margin-bottom: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .data-table-wrapper {
+        font-size: 10px;
+      }
+
+      .data-table-wrapper thead th,
+      .data-table-wrapper tbody td {
+        padding: 6px 4px;
+        font-size: 10px;
+      }
+
+      .section-header-admin h3 {
+        font-size: 15px;
+        margin-bottom: 10px;
+      }
+
+      .metric-card-admin {
+        padding: 12px;
+      }
+
+      .metric-card-admin h3 {
+        font-size: 22px;
+        margin: 8px 0;
+      }
+
+      .metric-card-admin p {
+        font-size: 11px;
+      }
+
+      .btn-professional {
+        padding: 10px 8px;
+        font-size: 10px;
+        border-radius: 6px;
+      }
+
+      .form-control-enhanced {
+        font-size: 11px;
+        padding: 5px 8px;
+        border-radius: 6px;
+      }
+    }
+
+    /* Touch-friendly buttons for mobile */
+    @media (hover: none) and (pointer: coarse) {
+      button, .btn, .btn-professional, a.btn {
+        min-height: 44px;
+        padding: 12px 15px !important;
+      }
+
+      .btn-sm {
+        min-height: 38px;
+        padding: 8px 12px !important;
+      }
+    }
+
   </style>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="headerNav">
@@ -231,98 +615,148 @@
       
       <!-- Dashboard Section -->
       <div id="adminDash" class="section">
-        <h2>Admin Dashboard</h2>
-        <div class="row mb-4">
-          <div class="col-md-3"><div class="card text-white bg-primary"><div class="card-body"><h5>Total Students: <span id="totalStudents">0</span></h5></div></div></div>
-          <div class="col-md-3"><div class="card text-white bg-success"><div class="card-body"><h5>Total Faculty: <span id="totalFaculty">0</span></h5></div></div></div>
-          <div class="col-md-3"><div class="card text-white bg-info"><div class="card-body"><h5>Total Subjects: <span id="totalSubjects">0</span></h5></div></div></div>
-          <div class="col-md-3"><div class="card text-white bg-warning"><div class="card-body"><h5>Today's Sessions: <span id="todaySessions">0</span></h5></div></div></div>
+        <div class="section-header-admin">
+          <h3>📊 Admin Dashboard</h3>
+          <div class="timestamp" id="dashTimestamp"></div>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-            <h5>Overall Attendance % per Department</h5>
-            <canvas id="deptChart" width="400" height="200"></canvas>
+        
+        <div class="row mb-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="metric-card-admin">
+              <h3 id="totalStudents">0</h3>
+              <p>Total Students</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="metric-card-admin">
+              <h3 id="totalFaculty">0</h3>
+              <p>Faculty Members</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="metric-card-admin">
+              <h3 id="totalSubjects">0</h3>
+              <p>Total Subjects</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="metric-card-admin">
+              <h3 id="todaySessions">0</h3>
+              <p>Today's Sessions</p>
+            </div>
           </div>
         </div>
-        <div class="mt-3">
-          <a href="#" class="btn btn-primary" onclick="showSection('students')">Add Student</a>
-          <a href="#" class="btn btn-secondary" onclick="showSection('faculty')">Add Faculty</a>
-          <a href="#" class="btn btn-info" onclick="showSection('reports')">View Reports</a>
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="section-header-admin">
+              <h5 style="margin:0;">Department-wise Attendance %</h5>
+            </div>
+            <canvas id="deptChart" width="400" height="200"></canvas>
+          </div>
+          <div class="col-md-4">
+            <div class="info-panel-admin">
+              <div class="info-panel-admin-header">Quick Actions</div>
+              <button class="btn btn-admin-pro w-100 mb-2" onclick="showSection('students')" style="background: #667eea; color: white; border: none;">👥 Add Student</button>
+              <button class="btn btn-admin-pro w-100 mb-2" onclick="showSection('faculty')" style="background: #764ba2; color: white; border: none;">👨‍🏫 Add Faculty</button>
+              <button class="btn btn-admin-pro w-100" onclick="showSection('tenDayAnalytics')" style="background: #667eea; color: white; border: none;">📈 View Analytics</button>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- 10-Day Stats Section -->
       <div id="tenDayAnalytics" class="section" style="display:none;">
-        <h2>Last 10 Days - Comprehensive Analysis</h2>
+        <div class="section-header-admin">
+          <h3>📊 Last 10 Days - Comprehensive Analysis</h3>
+          <div class="timestamp" id="analyticsTimestamp"></div>
+        </div>
         
         <div class="row mb-4">
-          <div class="col-md-3">
-            <div class="card text-center">
-              <div class="card-body">
-                <h5 class="card-title">Total Sessions</h5>
-                <h3 id="anal-sessions" class="text-primary">0</h3>
-              </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="metric-card-admin">
+              <h3 id="anal-sessions">0</h3>
+              <p>Total Sessions</p>
             </div>
           </div>
-          <div class="col-md-3">
-            <div class="card text-center">
-              <div class="card-body">
-                <h5 class="card-title">Avg Attendance %</h5>
-                <h3 id="anal-avgperc" class="text-success">0%</h3>
-              </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="metric-card-admin">
+              <h3 id="anal-avgperc">0%</h3>
+              <p>Avg Attendance %</p>
             </div>
           </div>
-          <div class="col-md-3">
-            <div class="card text-center">
-              <div class="card-body">
-                <h5 class="card-title">Defaulters</h5>
-                <h3 id="anal-defaulters" class="text-danger">0</h3>
-              </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="metric-card-admin">
+              <h3 id="anal-defaulters">0</h3>
+              <p>Defaulters (&lt;75%)</p>
             </div>
           </div>
-          <div class="col-md-3">
-            <div class="card text-center">
-              <div class="card-body">
-                <h5 class="card-title">Good Standing</h5>
-                <h3 id="anal-goodstand" class="text-info">0</h3>
-              </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="metric-card-admin">
+              <h3 id="anal-goodstand">0</h3>
+              <p>Good Standing (&gt;85%)</p>
             </div>
           </div>
         </div>
 
         <div class="row mb-4">
           <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">Department-wise Attendance %</div>
-              <div class="card-body">
-                <table class="table table-sm" id="deptAnalTable">
-                  <thead><tr><th>Department</th><th>Students</th><th>Avg %</th><th>Defaulters</th></tr></thead>
-                  <tbody></tbody>
-                </table>
-              </div>
+            <div class="section-header-admin">
+              <h5 style="margin:0;">Department-wise Attendance</h5>
+            </div>
+            <div class="data-table-wrapper">
+              <table class="table table-hover" id="deptAnalTable">
+                <thead>
+                  <tr>
+                    <th>Department</th>
+                    <th>Students</th>
+                    <th>Avg %</th>
+                    <th>Defaulters</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">Subject-wise Performance</div>
-              <div class="card-body">
-                <table class="table table-sm" id="subAnalTable">
-                  <thead><tr><th>Subject</th><th>Sessions</th><th>Avg %</th><th>Low Attendance</th></tr></thead>
-                  <tbody></tbody>
-                </table>
-              </div>
+            <div class="section-header-admin">
+              <h5 style="margin:0;">Subject-wise Performance</h5>
+            </div>
+            <div class="data-table-wrapper">
+              <table class="table table-hover" id="subAnalTable">
+                <thead>
+                  <tr>
+                    <th>Subject</th>
+                    <th>Sessions</th>
+                    <th>Avg %</th>
+                    <th>Low Attendance</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
             </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-header">Defaulter List (< 75% in past 10 days)</div>
-          <div class="card-body">
-            <div class="form-group mb-3">
-              <input type="text" class="form-control" id="defaulterFilter" placeholder="Search by name/roll...">
-            </div>
-            <table class="table" id="defaultersTable">
-              <thead><tr><th>Roll No</th><th>Name</th><th>Department</th><th>Attendance %</th><th>Classes Missed</th><th>Status</th></tr></thead>
+        <div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-top: 25px;">
+          <div class="section-header-admin">
+            <h5 style="margin:0;">Defaulter List (&lt; 75% in past 10 days)</h5>
+          </div>
+          <div class="form-group mb-3">
+            <input type="text" class="form-control form-control-enhanced" id="defaulterFilter" placeholder="🔍 Search by name or roll number...">
+          </div>
+          <div class="data-table-wrapper">
+            <table class="table table-hover" id="defaultersTable">
+              <thead>
+                <tr>
+                  <th>Roll No</th>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>Attendance %</th>
+                  <th>Classes Missed</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
               <tbody></tbody>
             </table>
           </div>
@@ -381,76 +815,187 @@
 
       <!-- Students Section -->
       <div id="students" class="section" style="display:none;">
-        <h2>Manage Students</h2>
-        <form id="addStudentForm" class="mb-3">
-          <div class="row">
-            <div class="col-md-2"><input type="text" class="form-control" id="stuName" placeholder="Name" required></div>
-            <div class="col-md-2"><input type="text" class="form-control" id="rollNo" placeholder="Roll No" required></div>
-            <div class="col-md-2"><input type="email" class="form-control" id="stuEmail" placeholder="Email"></div>
-            <div class="col-md-2"><select class="form-control" id="stuDept" required><option value="">Dept</option></select></div>
-            <div class="col-md-2"><select class="form-control" id="stuCourse" required><option value="">Course</option></select></div>
-            <div class="col-md-1"><input type="number" class="form-control" id="stuSem" placeholder="Sem" min="1" required></div>
-            <div class="col-md-1"><input type="text" class="form-control" id="stuSection" placeholder="Section" required></div>
-          </div>
-          <button type="submit" class="btn btn-success mt-2">Add Student</button>
-        </form>
-        <input type="text" class="form-control mb-2" id="stuSearch" placeholder="Search by name or roll no">
-        <table class="table" id="studentsTable">
-          <thead><tr><th>ID</th><th>Name</th><th>Roll No</th><th>Email</th><th>Course/Sem/Section</th><th>Actions</th></tr></thead>
-          <tbody></tbody>
-        </table>
+        <div class="section-header-admin">
+          <h3>👥 Manage Students</h3>
+          <div class="timestamp" id="studentsTimestamp"></div>
+        </div>
+        
+        <div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-bottom: 25px;">
+          <h5 style="margin-bottom: 15px; color: #333; font-weight: 700;">Add New Student</h5>
+          <form id="addStudentForm" class="mb-3">
+            <div class="row">
+              <div class="col-md-2"><input type="text" class="form-control form-control-enhanced" id="stuName" placeholder="Name" required></div>
+              <div class="col-md-2"><input type="text" class="form-control form-control-enhanced" id="rollNo" placeholder="Roll No" required></div>
+              <div class="col-md-2"><input type="email" class="form-control form-control-enhanced" id="stuEmail" placeholder="Email"></div>
+              <div class="col-md-2"><select class="form-control form-control-enhanced" id="stuDept" required><option value="">Dept</option></select></div>
+              <div class="col-md-2"><select class="form-control form-control-enhanced" id="stuCourse" required><option value="">Course</option></select></div>
+              <div class="col-md-1"><input type="number" class="form-control form-control-enhanced" id="stuSem" placeholder="Sem" min="1" required></div>
+              <div class="col-md-1"><input type="text" class="form-control form-control-enhanced" id="stuSection" placeholder="Section" required></div>
+            </div>
+            <button type="submit" class="btn btn-professional mt-2">➕ Add Student</button>
+          </form>
+        </div>
+
+        <div class="section-header-admin">
+          <h5 style="margin:0;">Student List</h5>
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+          <input type="text" class="form-control form-control-enhanced" id="stuSearch" placeholder="🔍 Search by name or roll number...">
+        </div>
+        
+        <div class="data-table-wrapper">
+          <table class="table table-hover" id="studentsTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Roll No</th>
+                <th>Email</th>
+                <th>Course/Sem/Sec</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
 
       <!-- Faculty Section -->
       <div id="faculty" class="section" style="display:none;">
-        <h2>Manage Faculty</h2>
-        <form id="addFacultyForm" class="mb-3">
-          <div class="row">
-            <div class="col-md-3"><input type="text" class="form-control" id="facName" placeholder="Name" required></div>
-            <div class="col-md-3"><input type="email" class="form-control" id="facEmail" placeholder="Email"></div>
-            <div class="col-md-3"><input type="tel" class="form-control" id="facContact" placeholder="Contact"></div>
-            <div class="col-md-3"><select class="form-control" id="facDept" required><option value="">Dept</option></select></div>
-          </div>
-          <button type="submit" class="btn btn-success mt-2">Add Faculty</button>
-        </form>
-        <table class="table" id="facultyTable">
-          <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Contact</th><th>Dept</th><th>Actions</th></tr></thead>
-          <tbody></tbody>
-        </table>
+        <div class="section-header-admin">
+          <h3>👨‍🏫 Manage Faculty</h3>
+          <div class="timestamp" id="facultyTimestamp"></div>
+        </div>
+        
+        <div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-bottom: 25px;">
+          <h5 style="margin-bottom: 15px; color: #333; font-weight: 700;">Add New Faculty</h5>
+          <form id="addFacultyForm" class="mb-3">
+            <div class="row">
+              <div class="col-md-3"><input type="text" class="form-control form-control-enhanced" id="facName" placeholder="Name" required></div>
+              <div class="col-md-3"><input type="email" class="form-control form-control-enhanced" id="facEmail" placeholder="Email"></div>
+              <div class="col-md-3"><input type="tel" class="form-control form-control-enhanced" id="facContact" placeholder="Contact"></div>
+              <div class="col-md-3"><select class="form-control form-control-enhanced" id="facDept" required><option value="">Dept</option></select></div>
+            </div>
+            <button type="submit" class="btn btn-professional mt-2">➕ Add Faculty</button>
+          </form>
+        </div>
+
+        <div class="section-header-admin">
+          <h5 style="margin:0;">Faculty List</h5>
+        </div>
+        
+        <div class="data-table-wrapper">
+          <table class="table table-hover" id="facultyTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Department</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
 
       <!-- Allocations Section -->
       <div id="allocations" class="section" style="display:none;">
-        <h2>Subject Allocations</h2>
-        <form id="addAllocationForm" class="mb-3">
-          <div class="row">
-            <div class="col-md-3"><select class="form-control" id="allocFac" required><option value="">Faculty</option></select></div>
-            <div class="col-md-3"><select class="form-control" id="allocSub" required><option value="">Subject</option></select></div>
-            <div class="col-md-2"><input type="number" class="form-control" id="allocSem" placeholder="Semester" required></div>
-            <div class="col-md-2"><input type="text" class="form-control" id="allocSection" placeholder="Section" required></div>
-            <div class="col-md-2"><input type="text" class="form-control" id="allocYear" placeholder="Academic Year" required></div>
-          </div>
-          <button type="submit" class="btn btn-success mt-2">Allocate</button>
-        </form>
-        <table class="table" id="allocationsTable">
-          <thead><tr><th>ID</th><th>Faculty</th><th>Subject</th><th>Sem/Section/Year</th><th>Actions</th></tr></thead>
-          <tbody></tbody>
-        </table>
+        <div class="section-header-admin">
+          <h3>🎓 Subject Allocations</h3>
+          <div class="timestamp" id="allocationsTimestamp"></div>
+        </div>
+        
+        <div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-bottom: 25px;">
+          <h5 style="margin-bottom: 15px; color: #333; font-weight: 700;">Allocate Subject to Faculty</h5>
+          <form id="addAllocationForm" class="mb-3">
+            <div class="row">
+              <div class="col-md-3"><select class="form-control form-control-enhanced" id="allocFac" required><option value="">Faculty</option></select></div>
+              <div class="col-md-3"><select class="form-control form-control-enhanced" id="allocSub" required><option value="">Subject</option></select></div>
+              <div class="col-md-2"><input type="number" class="form-control form-control-enhanced" id="allocSem" placeholder="Semester" required></div>
+              <div class="col-md-2"><input type="text" class="form-control form-control-enhanced" id="allocSection" placeholder="Section" required></div>
+              <div class="col-md-2"><input type="text" class="form-control form-control-enhanced" id="allocYear" placeholder="Year" value="2025" required></div>
+            </div>
+            <button type="submit" class="btn btn-professional mt-2">✓ Allocate</button>
+          </form>
+        </div>
+
+        <div class="section-header-admin">
+          <h5 style="margin:0;">Active Allocations</h5>
+        </div>
+        
+        <div class="data-table-wrapper">
+          <table class="table table-hover" id="allocationsTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Faculty</th>
+                <th>Subject</th>
+                <th>Sem/Section/Year</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
 
       <!-- Reports Section -->
       <div id="reports" class="section" style="display:none;">
-        <h2>Reports & Analytics</h2>
-        <div class="row mb-3">
-          <div class="col-md-3"><select class="form-control" id="reportType"><option>Student-wise</option><option>Subject-wise</option><option>Defaulter List</option></select></div>
-          <div class="col-md-3"><select class="form-control" id="reportDept"><option value="">All Depts</option></select></div>
-          <div class="col-md-2"><input type="date" class="form-control" id="dateFrom"></div>
-          <div class="col-md-2"><input type="date" class="form-control" id="dateTo"></div>
-          <div class="col-md-2"><input type="number" class="form-control" id="threshold" placeholder="Threshold %" value="75"></div>
+        <div class="section-header-admin">
+          <h3>📈 Reports & Analytics</h3>
+          <div class="timestamp" id="reportsTimestamp"></div>
         </div>
-        <button class="btn btn-primary" onclick="generateReport()">Generate Report</button>
-        <button class="btn btn-secondary ms-2" onclick="exportReport()">Export PDF/Print</button>
-        <div id="reportOutput" class="mt-3"></div>
+
+        <div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-bottom: 25px;">
+          <h5 style="margin-bottom: 15px; color: #333; font-weight: 700;">Report Filters</h5>
+          <div class="row mb-3">
+            <div class="col-md-3">
+              <label style="font-size: 13px; color: #666; font-weight: 600; margin-bottom: 5px; display: block;">Report Type</label>
+              <select class="form-control form-control-enhanced" id="reportType">
+                <option>Student-wise</option>
+                <option>Subject-wise</option>
+                <option>Defaulter List</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label style="font-size: 13px; color: #666; font-weight: 600; margin-bottom: 5px; display: block;">Department</label>
+              <select class="form-control form-control-enhanced" id="reportDept"><option value="">All Departments</option></select>
+            </div>
+            <div class="col-md-2">
+              <label style="font-size: 13px; color: #666; font-weight: 600; margin-bottom: 5px; display: block;">From Date</label>
+              <input type="date" class="form-control form-control-enhanced" id="dateFrom">
+            </div>
+            <div class="col-md-2">
+              <label style="font-size: 13px; color: #666; font-weight: 600; margin-bottom: 5px; display: block;">To Date</label>
+              <input type="date" class="form-control form-control-enhanced" id="dateTo">
+            </div>
+            <div class="col-md-2">
+              <label style="font-size: 13px; color: #666; font-weight: 600; margin-bottom: 5px; display: block;">Threshold (%)</label>
+              <input type="number" class="form-control form-control-enhanced" id="threshold" placeholder="75" value="75" min="0" max="100">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button class="btn btn-professional" onclick="generateReport()" style="background: #667eea; color: white; border: none; margin-right: 10px;">📊 Generate Report</button>
+              <button class="btn btn-professional" onclick="exportReport()" style="background: #764ba2; color: white; border: none;">🖨️ Export/Print</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+          <div class="section-header-admin">
+            <h5 style="margin:0;">Report Results</h5>
+          </div>
+          <div class="data-table-wrapper">
+            <div id="reportOutput" style="min-height: 100px; padding: 20px; text-align: center; color: #999;">
+              📊 Generate a report to see results here...
+            </div>
+          </div>
+        </div>
       </div>
 
     </main>
@@ -494,15 +1039,21 @@
     });
 
     function loadSectionContent(sectionId) {
-      saveData(); // Always save before loading
       if (sectionId === 'tenDayAnalytics') {
         loadTenDayAnalytics();
+        // Add timestamp
+        const timestamp = document.getElementById('analyticsTimestamp');
+        if (timestamp) timestamp.textContent = 'Last updated: ' + new Date().toLocaleTimeString();
       } else if (sectionId === 'adminDash') {
         document.getElementById('totalStudents').textContent = data.students.length;
         document.getElementById('totalFaculty').textContent = data.faculty.length;
         document.getElementById('totalSubjects').textContent = data.subjects.length;
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('todaySessions').textContent = data.attendanceSessions.filter(s => s.date === today).length;
+        
+        // Add timestamp
+        const timestamp = document.getElementById('dashTimestamp');
+        if (timestamp) timestamp.textContent = 'Last updated: ' + new Date().toLocaleTimeString();
         
         // Simple bar chart for depts (using Chart.js)
         const ctx = document.getElementById('deptChart').getContext('2d');
@@ -519,7 +1070,7 @@
         });
         deptChart = new Chart(ctx, {
           type: 'bar',
-          data: { labels: Object.keys(deptPercs), datasets: [{ label: 'Avg %', data: Object.values(deptPercs), backgroundColor: 'rgba(54, 162, 235, 0.2)' }] },
+          data: { labels: Object.keys(deptPercs), datasets: [{ label: 'Avg %', data: Object.values(deptPercs), backgroundColor: ['rgba(102, 126, 234, 0.7)', 'rgba(118, 75, 162, 0.7)'] }] },
           options: { scales: { y: { beginAtZero: true, max: 100 } } }
         });
       } else if (sectionId === 'depts') {
@@ -547,18 +1098,59 @@
         const search = document.getElementById('stuSearch').value.toLowerCase();
         const filteredStudents = data.students.filter(s => s.name.toLowerCase().includes(search) || s.rollNo.toLowerCase().includes(search));
         const tbody = document.querySelector('#studentsTable tbody');
-        tbody.innerHTML = filteredStudents.map(s => {
+        const formattedRows = filteredStudents.map((s, i) => {
+          const formatted = formatStudentRow(s, i);
           const dept = data.departments.find(d => d.id === s.deptId);
           const course = data.courses.find(c => c.id === s.courseId);
-          return `<tr><td>${s.id}</td><td>${s.name}</td><td>${s.rollNo}</td><td>${s.email || ''}</td><td>${course ? course.name : ''} / ${s.semester} / ${s.section}</td><td><button class="btn btn-sm btn-warning" onclick="editStudent(${s.id})">Edit</button> <button class="btn btn-sm btn-danger" onclick="deleteStudent(${s.id})">Delete</button></td></tr>`;
-        }).join('');
+          return {
+            ...formatted,
+            dept: dept?.name || '-',
+            course: course?.name || '-'
+          };
+        });
+        tbody.innerHTML = formattedRows.map(row => `
+          <tr class="data-row" data-student-id="${row.id}">
+            <td>${row.id}</td>
+            <td><strong>${row.name}</strong></td>
+            <td>${row.rollNo}</td>
+            <td>${row.email || '-'}</td>
+            <td>${row.course} / ${row.semester} / ${row.section}</td>
+            <td>
+              <button class="btn btn-sm btn-outline-warning" onclick="editStudent(${row.id})">Edit</button>
+              <button class="btn btn-sm btn-outline-danger" onclick="deleteStudent(${row.id})">Delete</button>
+            </td>
+          </tr>
+        `).join('');
+        // Add timestamp
+        const timestamp = document.getElementById('studentsTimestamp');
+        if (timestamp) timestamp.textContent = 'Last updated: ' + new Date().toLocaleTimeString();
       } else if (sectionId === 'faculty') {
         populateSelect('facDept', data.departments, 'id', 'name');
         const tbody = document.querySelector('#facultyTable tbody');
-        tbody.innerHTML = data.faculty.map(f => {
+        const formattedRows = data.faculty.map((f, i) => {
+          const formatted = formatFacultyRow(f, i);
           const dept = data.departments.find(d => d.id === f.deptId);
-          return `<tr><td>${f.id}</td><td>${f.name}</td><td>${f.email || ''}</td><td>${f.contact || ''}</td><td>${dept ? dept.name : ''}</td><td><button class="btn btn-sm btn-warning" onclick="editFaculty(${f.id})">Edit</button> <button class="btn btn-sm btn-danger" onclick="deleteFaculty(${f.id})">Delete</button></td></tr>`;
-        }).join('');
+          return {
+            ...formatted,
+            dept: dept?.name || '-'
+          };
+        });
+        tbody.innerHTML = formattedRows.map(row => `
+          <tr class="data-row" data-faculty-id="${row.id}">
+            <td>${row.id}</td>
+            <td><strong>${row.name}</strong></td>
+            <td>${row.email || '-'}</td>
+            <td>${row.contact || '-'}</td>
+            <td>${row.dept}</td>
+            <td>
+              <button class="btn btn-sm btn-outline-warning" onclick="editFaculty(${row.id})">Edit</button>
+              <button class="btn btn-sm btn-outline-danger" onclick="deleteFaculty(${row.id})">Delete</button>
+            </td>
+          </tr>
+        `).join('');
+        // Add timestamp
+        const timestamp = document.getElementById('facultyTimestamp');
+        if (timestamp) timestamp.textContent = 'Last updated: ' + new Date().toLocaleTimeString();
       } else if (sectionId === 'allocations') {
         populateSelect('allocFac', data.faculty, 'id', 'name');
         populateSelect('allocSub', data.subjects, 'id', 'code + " - " + name');
@@ -619,15 +1211,19 @@
       const courseId = parseInt(document.getElementById('stuCourse').value);
       const semester = parseInt(document.getElementById('stuSem').value);
       const section = document.getElementById('stuSection').value.trim();
-      if (!name || !rollNo || !deptId || !courseId || !semester || !section) return alert('All fields required');
+      if (!name || !rollNo || !deptId || !courseId || !semester || !section) {
+        showToast('❌ All fields are required!', 'error', 2000);
+        return;
+      }
       const newStudent = { 
         id: data.students.length + 1, 
         userId: data.users.length + 1, 
         rollNo, name, email, deptId, courseId, semester, section 
       };
-      data.students.push(newStudent);
-      data.users.push({ id: newStudent.userId, username: rollNo.toLowerCase(), password: 'default123', role: 'student', email });
-      saveData();
+      updateDataWithNotification(() => {
+        data.students.push(newStudent);
+        data.users.push({ id: newStudent.userId, username: rollNo.toLowerCase(), password: 'default123', role: 'student', email });
+      });
       loadSectionContent('students');
       e.target.reset();
     }
@@ -638,11 +1234,15 @@
       const email = document.getElementById('facEmail').value.trim();
       const contact = document.getElementById('facContact').value.trim();
       const deptId = parseInt(document.getElementById('facDept').value);
-      if (!name || !deptId) return alert('Name and Dept required');
-      const newFac = { id: data.faculty.length + 1, userId: data.users.length + 1, name, email, contact, deptId };
-      data.faculty.push(newFac);
-      data.users.push({ id: newFac.userId, username: name.toLowerCase().replace(' ', ''), password: 'fac' + newFac.id, role: 'faculty', email });
-      saveData();
+      if (!name || !deptId) {
+        showToast('❌ Name and Department are required!', 'error', 2000);
+        return;
+      }
+      const newFac = { id: data.faculty.length + 1, userId: data.users.length + 1, name, email, contact, deptId, designation: 'Faculty', qualification: 'M.Tech' };
+      updateDataWithNotification(() => {
+        data.faculty.push(newFac);
+        data.users.push({ id: newFac.userId, username: name.toLowerCase().replace(' ', ''), password: 'fac' + newFac.id, role: 'faculty', email });
+      });
       loadSectionContent('faculty');
       e.target.reset();
     }
@@ -700,22 +1300,28 @@
       const from = document.getElementById('dateFrom').value;
       const to = document.getElementById('dateTo').value;
       const threshold = parseInt(document.getElementById('threshold').value);
-      let output = '<table class="table"><thead><tr><th>Name/Roll</th><th>Subject</th><th>Total</th><th>Attended</th><th>%</th></tr></thead><tbody>';
+      let rows = [];
 
       if (type === 'Defaulter List') {
         const filteredStudents = deptId ? data.students.filter(s => s.deptId === deptId) : data.students;
         filteredStudents.forEach(stu => {
-          // Calc per student overall (simplified)
           const sessions = data.attendanceSessions.filter(s => !from || s.date >= from).filter(s => !to || s.date <= to);
           const total = sessions.length;
           const attended = data.attendanceDetails.filter(d => sessions.some(ses => ses.id === d.sessionId) && d.studentId === stu.id && d.status === 'Present').length;
           const perc = total ? (attended / total) * 100 : 0;
           if (perc < threshold) {
-            output += `<tr class="table-danger"><td>${stu.name} (${stu.rollNo})</td><td>All</td><td>${total}</td><td>${attended}</td><td>${perc.toFixed(2)}%</td></tr>`;
+            rows.push({
+              name: stu.name,
+              rollNo: stu.rollNo,
+              subject: 'Overall',
+              total: total,
+              attended: attended,
+              percentage: perc.toFixed(2),
+              status: perc < 75 ? 'Defaulter' : 'Weak'
+            });
           }
         });
       } else if (type === 'Student-wise') {
-        // Similar calc, group by student and subjects
         data.students.forEach(stu => {
           const subjects = data.subjects.filter(s => s.courseId === stu.courseId);
           subjects.forEach(sub => {
@@ -725,13 +1331,57 @@
               const total = sessions.length;
               const attended = data.attendanceDetails.filter(d => sessions.some(ses => ses.id === d.sessionId) && d.studentId === stu.id && d.status === 'Present').length;
               const perc = total ? (attended / total) * 100 : 0;
-              output += `<tr><td>${stu.name}</td><td>${sub.name}</td><td>${total}</td><td>${attended}</td><td>${perc.toFixed(2)}%</td></tr>`;
+              rows.push({
+                name: stu.name,
+                rollNo: stu.rollNo,
+                subject: sub.name,
+                total: total,
+                attended: attended,
+                percentage: perc.toFixed(2),
+                status: perc >= 85 ? 'Good' : perc >= 75 ? 'Average' : 'Poor'
+              });
             }
           });
         });
-      } // Add Subject-wise similarly
-      output += '</tbody></table>';
-      document.getElementById('reportOutput').innerHTML = output || '<p>No data matching filters.</p>';
+      }
+
+      // Render professional table
+      let html = `<div class="data-table-wrapper">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name/Roll</th>
+              <th>Subject</th>
+              <th>Total Sessions</th>
+              <th>Attended</th>
+              <th>Percentage</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>`;
+      
+      rows.forEach(row => {
+        const statusBadge = renderStatusBadge(row.status);
+        html += `<tr>
+          <td>${row.name} (${row.rollNo})</td>
+          <td>${row.subject}</td>
+          <td>${row.total}</td>
+          <td>${row.attended}</td>
+          <td><strong>${row.percentage}%</strong></td>
+          <td>${statusBadge}</td>
+        </tr>`;
+      });
+
+      html += `</tbody></table></div>`;
+      
+      const reportOutput = document.getElementById('reportOutput');
+      if (rows.length > 0) {
+        reportOutput.innerHTML = html;
+        showToast(`✓ Report generated with ${rows.length} records`, 'success', 2000);
+      } else {
+        reportOutput.innerHTML = '<div style="padding: 20px; text-align: center; color: #999;">No records found matching your criteria.</div>';
+        showToast('⚠ No records found', 'warning', 2000);
+      }
     }
 
     function exportReport() {
